@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- users edit start -->
+            <section class="users-edit">
+                <div class="card">
+                    <div class="card-content">
+                        {% include 'alert.html' %}
+                        <div class="card-body">
+                                    <!-- users edit Info form start -->
+                                <form class="post-form form form-horizontal" method="POST" action="{% url 'rule-update' %}"> 
+                                    {% csrf_token %}
+                                    <div class="row mt-1">
+                                        <div class="col-12 col-sm-6">
+                                            <h5 class="mb-1">Detalhes da regra</h5>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="controls">
+                                                            <label>Limite diário</label>
+                                                            <input value="{{ rule.maximum_earning_per_day }}" type="number" step="0.01" class="form-control" id="maximum_earning_per_day" name="maximum_earning_per_day" required placeholder="Detalhes da regra" data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="controls">
+                                                            <label>Ganho mínimo por clique</label>
+                                                            <input value="{{ rule.minimum_per_click }}" type="number" step="0.01" class="form-control" id="minimum_per_click" name="minimum_per_click" required placeholder="Ganho mínimo por clique" data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="controls">
+                                                            <label>Maximum Gain Per Click</label>
+                                                            <input value="{{ rule.maximum_per_click }}" type="number" step="0.01" class="form-control" id="maximum_per_click" name="maximum_per_click" required placeholder="Maximum Gain Per Click" data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="controls">
+                                                            <label>Minimum Withdrawl</label>
+                                                            <input value="{{ rule.minimum_withdrawl }}" type="number" step="0.01" class="form-control" id="minimum_withdrawl" name="minimum_withdrawl" required placeholder="Retirada Mínima" data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="controls">
+                                                            <label>Quantas Estrelhas</label>
+                                                            <input value="{{ var.number_star }}" type="number" step="0.01" class="form-control" id="number_star" name="number_star" required placeholder="Numero de Estrelas" data-validation-required-message="This field is required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                            <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Salvar alterações</button>
+                                            <button type="reset" class="btn btn-outline-warning">Redefinir</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- users edit Info form ends -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- users edit ends -->
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            
+        });
+    </script>
+{% endblock content %}

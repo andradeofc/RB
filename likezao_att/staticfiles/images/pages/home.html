@@ -1,0 +1,599 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Bet da Rainha - Home</title>
+    <link rel="apple-touch-icon" href="{% static 'images/ico/apple-icon-120.png' %}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/css/vendors.min.css' %}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/colors.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/components.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/themes/dark-layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/themes/semi-dark-layout.css' %}">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/core/colors/palette-gradient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pages/authentication.css' %}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- END: Custom CSS-->
+
+    <style>
+        /* It is triggered when screen
+           size becomes <=768px */
+           @media screen and (max-width: 500px) {
+            .btn {
+                
+                font-size: 10px;
+            }
+            .btnwrap {
+                text-align: auto;
+              }
+        }
+    </style>
+    
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page myBackground" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" >
+    
+    <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow">
+        <div class="navbar-wrapper">
+            <div class="navbar-container content">
+                <div class="navbar-collapse" id="navbar-mobile">
+                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+                        <ul class="nav navbar-nav" style="display: contents;">
+                            <li class="nav-item mobile-menu d-xl-none ml-auto"><a class="nav-link" href="{% url 'logout' %}" data-toggle="tooltip" data-placement="top" title="Logout"><i class="fa fa-sign-out"></i></a></li>
+                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link" data-placement="top"> Vamos Lucrar, {{ user.full_name }} ?</a></li>
+                            <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{% url 'logout' %}" data-toggle="tooltip" data-placement="top" title="Logout"><i class="ficon feather icon-log-out"></i></a></li>
+                            <li class="nav-item d-none d-lg-block"><a class="nav-link"><i class="ficon feather ">Vamos Lucrar, {{ user.full_name }} ?</i></a></li>
+                        </ul>
+                    </div><!-- END: 
+                    <ul class="mr-2 nav navbar-nav float-right">
+                        <li class="nav-item mobile-menu d-xl-none ml-auto"><a class="nav-link" data-toggle="tooltip" data-placement="top" title="saldo"><i class="fa fa-credit-card"></i>  R$ {{ user.bank_details.last.total_earning }}</a></li>
+                        <li class="nav-item d-none d-lg-block"><a class="nav-link" data-toggle="tooltip" data-placement="top" title="saldo"><i class="fa fa-credit-card"></i>  R$ {{ user.bank_details.last.total_earning }}</a></li>
+                    </ul> APP-->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="app-content content" style="padding-top: 7em">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            {% if messages %}
+                <br><br><br><br>
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert" id="alert_container">
+                            <p class="mb-0">
+                                {{ message }}
+                            </p>
+                        </div>
+                    {% elif message.tags == 'success' %}
+                        <div class="alert alert-success" role="alert" id="alert_container">
+                            <p class="mb-0">
+                                {{ message }}
+                            </p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <div class="content-body">
+                <section class="row flexbox-container">
+                    <div class="col-xl-8 col-11 d-flex justify-content-center">
+                        <div class="card bg-authentication rounded-0 mb-0">
+                            <!-- END: <div class="embed-responsive embed-responsive-4by3">
+                                <img alt="Card image cap" class="card-img-top embed-responsive-item" src="{% static 'images/pages/g.png' %}" />
+                            </div> !-->
+                            
+                            
+
+
+                            <div class="card-block">
+
+                                    
+
+                                    <div class="card rounded-2 mb-0 px-2" style="background-color: #d2d2d2">
+
+                                    
+                                        <br>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading active" role="tab" id="headingOne">
+                                              <h4 class="panel-title">
+                                                <a class="btn botao-sinal mb-3 collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                  Obter Novo Sinal
+                                                </a>
+                                              </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                              <div class="panel-body">
+                                                <!-- BEGIN: APP-->
+                                                <div id="game-wrapper" class="game-wrapper">
+                                                    <div id="board" class="board"><div><img src="{% static 'images/pages/diamond.png' %}" alt="💎"></div><div><img src="{% static 'images/pages/diamond.png' %}" alt="💎"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/diamond.png' %}" alt="💎"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div><div><img src="{% static 'images/pages/empty.png' %}" alt="💣"></div></div>
+                                                    <img id="overlay" class="overlay" src="{% static 'images/pages/novo.gif' %}" alt="Desfocado" style="display: block;">
+                                                    <div class="status-container" style="opacity: 1;">
+                                                        <p id="status" class="status" style="display: block;">Injetando script</p>
+                                                    </div>
+                                                </div>
+        
+                                    
+                                                <p id="info" class="info"></p>
+                                            
+                                                <button id="generate-opportunity" class="generate-opportunity">Hackear Agora</button>
+                                                <br>
+                                              </div>
+                                            </div>
+                                          </div>
+                                   
+                                        
+
+                                        <!-- BEGIN: APP-->
+                                        <div class="card-btns d-flex justify-content-between">
+                                            
+                                            
+                                            
+                                        </div>
+                                        <button type="button"  data-toggle="modal" data-target="#warning" id="cadastro" class="cadastro">Cadastre-se Aqui</button></a>
+                                        <!--target="_blank"-->
+                                        <!-- https://bit.ly/3mCAnJW -->
+                                        <span class="playpix"><b>GREENBETS</b></span>
+                                        <p id="cadastro-texto"><b>☝️Clique no botão vermelho </b> para efetuar o cadastro na <b>ÚNICA</b> plataforma que o robô analisa.</p>
+                                        
+                                        <div id="iframe-disabled">
+                                             <iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe> 
+                                        </div>
+                                        
+                                        <div style="margin: 20px 0;"></div>
+                                         <!--target="_blank"-->
+                                    </div>
+                                        <!-- END: APP-->
+
+                                        <!-- END: APP-->
+                                        <div class="MuiBox-root css-0"><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-t988ti"><div class="MuiBox-root css-0 scrollbar" id="iframe-game"><iframe width="100%" height="687" src="https://afiliados.greenbets.io/visit/?bta=35205&brand=greenbetsio" style="border: none;"></iframe></div></div></div>
+
+                                        
+                                        <!-- BEGIN: APP-->
+                                        
+                                        
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+    
+    <div class="modal fade text-left" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel140" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-warning white">
+                    <h5 class="modal-title" id="myModalLabel140">Realize seu Cadastro Abaixo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1qpvtmh"><div class="MuiBox-root css-0" id="iframe-game"><iframe width="99%" height="687" src="https://greenbets.io/signup?btag=CX-35205_358563" style="border: none; margin: 20px 0;"></iframe></div></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{% static 'vendors/js/vendors.min.js' %}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{% static 'js/core/app-menu.js' %}"></script>
+    <script src="{% static 'js/core/app.js' %}"></script>
+    <script src="{% static 'js/scripts/components.js' %}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <!-- END: Page JS-->
+    <script type="text/javascript">
+        $('#alert_container').delay(3000).fadeOut('slow');
+    </script>
+
+
+    <script>
+        const boardElement = document.getElementById("board");
+const overlayElement = document.getElementById("overlay");
+const statusElement = document.getElementById("status");
+const generateOpportunityButton = document.getElementById("generate-opportunity");
+function generateMinesBoard(diamond_positions) {
+    const grid = Array.from({
+        length: 25
+    }, (_,i)=>diamond_positions.includes(i) ? "💎" : "💣");
+    return Array.from({
+        length: 5
+    }, (_,i)=>grid.slice(i * 5, i * 5 + 5));
+}
+function renderBoard(board) {
+    boardElement.innerHTML = board.map((row)=>row.map((cell)=>`<div><img src="${cell === "💎" ? "{% static 'images/pages/diamond.png' %}" : "{% static 'images/pages/empty.png' %}"}" alt="${cell}"></div>`).join("")).join("");
+}
+function handleClickGenerateOpportunity() {
+    if (document.getElementById("generate-opportunity").innerHTML !== "Hackear Agora") {
+        return
+    }
+    overlayElement.style.display = "block";
+    statusElement.style.display = "block";
+    statusElement.parentNode.style.opacity = "1";
+    const diamond_positions = randomDiamondPositions();
+    const board = generateMinesBoard(diamond_positions);
+    renderBoard(board);
+    statusElement.textContent = "Injetando script";
+    setTimeout(()=>{
+        statusElement.textContent = "Verificando localização";
+    }
+    , 2500);
+    setTimeout(()=>{
+        statusElement.textContent = "Hackeado com Sucesso";
+    }
+    , 2000);
+    setTimeout(()=>{
+        overlayElement.style.display = "none";
+        statusElement.style.display = "none";
+        statusElement.parentNode.style.opacity = "0";
+    }
+    , 6000);
+    
+    init()
+}
+function randomDiamondPositions() {
+    return Array.from({
+        length: 4
+    }, ()=>Math.floor(Math.random() * 25));
+}
+generateOpportunityButton.addEventListener("click", handleClickGenerateOpportunity);
+document.addEventListener("DOMContentLoaded", ()=>{
+    handleClickGenerateOpportunity();
+}
+);
+
+
+function init () {
+    let value =  120
+    const interval = setInterval(() => {
+        value--
+        if (value <= 1) {
+            document.getElementById("generate-opportunity").innerHTML = "Hackear Agora"
+            document.getElementById("generate-opportunity").removeAttribute("disabled")
+            clearInterval(interval)
+            return
+        }
+
+        document.getElementById("generate-opportunity").innerHTML = `IDENTIFICAR SINAL (${value})`
+        document.getElementById("generate-opportunity").setAttribute("disabled", "")
+
+    }, 1000)
+
+    setTimeout(()=>{
+        
+        statusElement.textContent = "Verificando mapa de calor";    
+    },5000)
+}
+
+
+init()
+
+// document.addEventListener("onload", function(event) {
+//   if (document.hidden) {
+//     document.getElementById("iframe-disabled").innerHTML = `<iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe>`
+//   }
+// });
+
+// document.addEventListener("visibilitychange", function(event) {
+//   if (document.hidden) {
+//     document.getElementById("iframe-disabled").innerHTML = `<iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe>`
+//   }
+// });
+
+
+// window.addEventListener("beforeunload", function(event) {
+//   document.getElementById("iframe-disabled").innerHTML = `<iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe>`
+// });
+
+
+//<br /> Carregando Oportunidade
+
+const hasActive = true
+ document.addEventListener("visibilitychange", function(event) {
+    
+    if (hasActive === false) {
+        return
+    }
+  if (document.hidden) {
+      setTimeout(() => {
+          document.getElementById("iframe-disabled").innerHTML = `<iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe>`
+      }, 1500)
+    // document.getElementById("iframe-disabled").innerHTML = `<iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe>`
+  }
+});
+
+
+window.addEventListener("beforeunload", function(event) {
+     setTimeout(() => {
+          document.getElementById("iframe-disabled").innerHTML = `<iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe>`
+      }, 1500)
+  document.getElementById("iframe-disabled").innerHTML = `<iframe src="https://playpix.com/affiliates/?btag=1020729_l176602" style="visibility: hidden;" width="1px" height="1px">...</iframe>`
+});
+
+
+    </script>
+    
+    <style>
+
+        .frame {
+            overflow-y: auto;
+        }
+        .frame::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+        
+        .frame::-webkit-scrollbar:vertical {
+            width: 11px;
+        }
+        
+        .frame::-webkit-scrollbar:horizontal {
+            height: 11px;
+        }
+        
+        .frame::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            border: 2px solid white; /* should match background, can't be transparent */
+            background-color: rgba(0, 0, 0, .5);
+        }
+
+        .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+            max-height : inherit;
+          }
+
+        .botao-sinal {
+            border-color : #4839EB !important;
+            background-color: #0f0f0f !important;
+            color : #FFFFFF;
+          }
+        
+        .panel-heading {
+            padding: 0;
+              border:0;
+          }
+          .panel-title>a, .panel-title>a:active{
+              display:block;
+              padding:15px;
+            color:#fff;
+            font-size:16px;
+            font-weight:bold;
+              text-transform:uppercase;
+              letter-spacing:1px;
+            word-spacing:3px;
+              text-decoration:none;
+          }
+          .panel-heading  a:before {
+             font-family: 'Glyphicons Halflings';
+             content: "\e114";
+             float: right;
+             transition: all 0.5s;
+          }
+          .panel-heading.active a:before {
+              -webkit-transform: rotate(180deg);
+              -moz-transform: rotate(180deg);
+              transform: rotate(180deg);
+          } 
+
+.container {
+    display:flex;
+    margin-top: auto;
+    flex-direction: column;
+    align-items: center;
+    /*background: linear-gradient(to bottom, #2B2F57, #2B2F57);*/
+    /*background: linear-gradient(to bottom, #2B2F57, #3a3f77);*/
+    background: linear-gradient(to bottom, #000000, #4A94FD);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .1)
+}
+
+.game-wrapper {
+    position: relative;
+    margin-bottom: 1rem
+}
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 270px;
+    margin-bottom: 1.5rem
+}
+
+.banner img {
+    
+    width: 100%;
+    height: auto;
+    object-fit: contain
+}
+
+.playpix {
+    margin: 0 auto;
+    font-size: 20px;
+    color: #009815;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 4px;
+    margin-bottom: 1rem
+}
+
+.board div {
+    
+}
+
+.board img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain
+}
+
+.info {
+    margin-bottom: 1rem
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: none
+}
+
+.status-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 5;
+    transition: opacity .3s ease-in-out
+}
+
+.status {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    animation: fadeInOut 15s ease-in-out
+}
+
+.texto {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: #fff
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0
+    }
+
+    15%,
+    20% {
+        opacity: 1
+    }
+}
+
+.generate-opportunity {
+    display: block;
+    margin: 0 auto;
+    background-color: #1db941;
+    height: 50px;
+    width: 250px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
+    color: #fff;
+    padding: .5rem 1rem;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer
+    
+}
+
+.a {
+    margin: 0 auto;
+}
+
+.cadastro {
+    display: block;
+margin: 0 auto;
+    background-color: #f01810;
+    height: 50px;
+    width: 250px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
+    color: #fff;
+    padding: .5rem 1rem;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer
+}
+
+#cadastro-texto {
+    margin: 0 auto;
+    color: #000;
+    font: 15px;
+    max-width: 350px;
+    font-size: bold;
+    text-align: center
+}
+
+.cadastro:hover {
+    background-color: #a32c0e
+}
+
+.generate-opportunity:hover {
+    background-color: #218838
+}
+    </style>
+
+
+
+
+</body>
+<!-- END: Body-->
+
+</html>

@@ -1,0 +1,11 @@
+asgiref==3.5.2
+cffi==1.15.1
+cryptography==38.0.1
+Django==4.0.4
+django-crontab==0.7.1
+mysql==0.0.3
+mysqlclient==2.1.1
+pycparser==2.21
+PyMySQL==1.0.2
+sqlparse==0.4.2
+tzdata==2022.2

@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- BEGIN: Content-->
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-left mb-0">do utilizador</h2>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'users-list' %}">do utilizador</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">{{userr.full_name}}
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                {% include 'alert.html' %}
+                <section class="page-users-view">
+                    <div class="row">
+                        <!-- account start -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">em formação</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                            <table>
+                                                <tr>
+                                                    <td class="font-weight-bold">nome completo</td>
+                                                    <td>{{userr.full_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">CPF</td>
+                                                    <td>{{userr.cpf}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Email</td>
+                                                    <td>{{userr.email}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">número de telefone</td>
+                                                    <td>{{userr.phone}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">ganho de hoje</td>
+                                                    <td>{{userr.today_earning}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-12 col-md-12 col-lg-5">
+                                            <table class="ml-0 ml-sm-0 ml-lg-0">
+                                                <tr>
+                                                    <td class="font-weight-bold">retirada mínima</td>
+                                                    <td>{{rule.minimum_withdrawl}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Ganho Máximo por Dia</td>
+                                                    <td>{{userr.maximum_earning_per_day}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Ganho mínimo por Clique</td>
+                                                    <td>{{rule.minimum_per_click}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Ganho Máximo por Clique</td>
+                                                    <td>{{rule.maximum_per_click}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-primary mr-1 mb-1" data-toggle="modal" data-target="#EditModel">
+                                                editar
+                                            </button>
+                                            <a class="btn btn-outline-danger mr-1 mb-1" href="{% url 'user-delete' userr.id %}"><i class="feather icon-trash-2"></i> excluir</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- account end -->
+                    </div>
+                </section>
+                <!-- Zero configuration table -->
+                
+                <div class="modal fade" id="EditModel" tabindex="-1" role="dialog" aria-labelledby="EditModelTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EditModelTitle">Editar usuário</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="post-form form form-horizontal" method="POST" action="{% url 'user-update' userr.id %}"> 
+                                    {% csrf_token %}  
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>nome completo</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input value="{{userr.full_name}}" type="text" id="full_name" class="form-control" name="full_name" placeholder="nome completo" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>CPF</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input  value="{{userr.cpf}}" type="text" id="cpf" class="form-control" name="cpf" placeholder="CPF" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>Email</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input  value="{{userr.email}}" type="email" id="email" class="form-control" name="email" placeholder="Email" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>número de telefone</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input  value="{{userr.phone}}" type="text" id="phone" class="form-control" name="phone" placeholder="número de telefone" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>ganho total</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input  value="{{userr.bank_details.last.total_earning}}" type="text" id="total_earning" class="form-control" name="total_earning" placeholder="Ganho Total" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>Ganho Máximo por Dia</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input  value="{{userr.maximum_earning_per_day}}" type="number" step="0.01" id="maximum_earning_per_day" class="form-control" name="maximum_earning_per_day" onchange="uncheckBox()" placeholder="Ganho Máximo por Dia" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <fieldset class="form-group row">
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-8">
+                                                        <fieldset>
+                                                            <div class="custom-control custom-checkbox">
+                                                                {% if userr.maximum_earning_per_day == rule.maximum_earning_per_day %}
+                                                                    <input type="checkbox" class="custom-control-input" name="use_default" id="use_default" checked onclick="myFunction()">
+                                                                {% else %}
+                                                                    <input type="checkbox" class="custom-control-input" name="use_default" id="use_default" onclick="myFunction()">
+                                                                {% endif %}
+                                                                <label class="custom-control-label" for="use_default">Use Default</label>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-8 offset-md-4">
+                                                <button type="submit" class="btn btn-primary mr-1 mb-1">enviar</button>
+                                                <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Redefinir</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Accept</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Registros</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <p class="card-text">todos os registros</p>
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ganho total</th>
+                                                        <th>Agência Bancaria</th>
+                                                        <th>número da conta</th>
+                                                        <th>Nome</th>
+                                                        <th>tipo de conta</th>
+                                                        <th>número do banco</th>
+                                                        <th>criado em</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for record in details %}
+                                                    <tr>
+                                                        <td>{{ record.total_earning }}</td>
+                                                        <td>{{ record.branch }}</td>
+                                                        <td>{{ record.account_number }}</td>
+                                                        <td>{{ record.name }}</td>
+                                                        <td>{{ record.account_type }}</td>
+                                                        <td>{{ record.bank_number }}</td>
+                                                        <td>{{ record.created_at }}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>ganho total</th>
+                                                        <th>Agência Bancaria</th>
+                                                        <th>número da conta</th>
+                                                        <th>Nome</th>
+                                                        <th>tipo de conta</th>
+                                                        <th>número do banco</th>
+                                                        <th>criado em</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Zero configuration table -->
+            </div>
+        </div>
+    <!-- END: Content-->
+    <script type="text/javascript">
+        function myFunction() {
+            // Get the checkbox
+            var checkBox = document.getElementById("use_default");
+            // Get the output text
+            var maximum_earning_per_day = document.getElementById("maximum_earning_per_day");
+          
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true){
+              maximum_earning_per_day.value = {{rule.maximum_earning_per_day}};
+            } else {
+              maximum_earning_per_day.value = {{userr.maximum_earning_per_day}};
+            }
+          }
+          
+          function uncheckBox() {
+            // Get the checkbox
+            var checkBox = document.getElementById("use_default");
+            // Get the output text
+            var maximum_earning_per_day = document.getElementById("maximum_earning_per_day");
+          
+            // If the checkbox is checked, display the output text
+            if (maximum_earning_per_day.value == {{rule.maximum_earning_per_day}} ){
+              checkBox.checked = true;
+            } else {
+                checkBox.checked = false;
+            }
+          }
+    </script>
+{% endblock content %}

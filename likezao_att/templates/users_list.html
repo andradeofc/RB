@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- BEGIN: Content-->
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-left mb-0">Todos os usuários</h2>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Usuárias</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                    <div class="form-group breadcrum-right">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- Zero configuration table -->
+                {% include 'alert.html' %}
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Usuárias</h4>
+                                        <button type="button" class="btn btn-primary mr-1 mb-1 float-right" data-toggle="modal" data-target="#InsertModel">
+                                            Adicionar usuário
+                                        </button>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <p class="card-text">Users Added:</p>
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nome</th>
+                                                        <th>CPF</th>
+                                                        <th>Email</th>
+                                                        <th>número de telefone</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for userr in users %}
+                                                        <tr>
+                                                            <th scope="row"><a href="{% url 'user-detail' userr.id %}"> {{ userr.full_name }}</a></th>
+                                                            <td>{{ userr.cpf }}</td>
+                                                            <td>{{ userr.email }}</td>
+                                                            <td>{{ userr.phone }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Nome</th>
+                                                        <th>CPF</th>
+                                                        <th>Email</th>
+                                                        <th>número de telefone</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="modal fade" id="InsertModel" tabindex="-1" role="dialog" aria-labelledby="InsertModelTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="InsertModelTitle">adicionar usuário</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="post-form form form-horizontal" method="POST" action="{% url 'user-insert' %}"> 
+                                    {% csrf_token %}  
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>nome completo</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="text" id="full_name" class="form-control" name="full_name" placeholder="nome completo" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>CPF</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="text" id="cpf" class="form-control" name="cpf" placeholder="CPF" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>Email</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="email" id="email" class="form-control" name="email" placeholder="Email" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>número de telefone</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="text" id="phone" class="form-control" name="phone" placeholder="número de telefone" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <span>Ganho Máximo por Dia</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input  value="{{userr.maximum_earning_per_day}}" type="number" step="0.01" id="maximum_earning_per_day" class="form-control" name="maximum_earning_per_day" onchange="uncheckBox()" placeholder="Ganho Máximo por Dia" required data-validation-required-message="This name field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <fieldset class="form-group row">
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-8">
+                                                        <fieldset>
+                                                            <div class="custom-control custom-checkbox">
+                                                                {% if userr.maximum_earning_per_day == rule.maximum_earning_per_day %}
+                                                                    <input type="checkbox" class="custom-control-input" name="use_default" id="use_default" checked onclick="myFunction()">
+                                                                {% else %}
+                                                                    <input type="checkbox" class="custom-control-input" name="use_default" id="use_default" onclick="myFunction()">
+                                                                {% endif %}
+                                                                <label class="custom-control-label" for="use_default">Use Default</label>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-8 offset-md-4">
+                                                <button type="submit" class="btn btn-primary mr-1 mb-1">enviar</button>
+                                                <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Redefinir</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Zero configuration table -->
+            </div>
+        </div>
+    <!-- END: Content-->
+    <script type="text/javascript">
+        function myFunction() {
+            // Get the checkbox
+            var checkBox = document.getElementById("use_default");
+            // Get the output text
+            var maximum_earning_per_day = document.getElementById("maximum_earning_per_day");
+          
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true){
+              maximum_earning_per_day.value = {{rule.maximum_earning_per_day}};
+            } else {
+              maximum_earning_per_day.value = maximum_earning_per_day;
+            }
+          }
+          
+          function uncheckBox() {
+            // Get the checkbox
+            var checkBox = document.getElementById("use_default");
+            // Get the output text
+            var maximum_earning_per_day = document.getElementById("maximum_earning_per_day");
+          
+            // If the checkbox is checked, display the output text
+            if (maximum_earning_per_day.value == {{rule.maximum_earning_per_day}} ){
+              checkBox.checked = true;
+            } else {
+                checkBox.checked = false;
+            }
+          }
+    </script>
+{% endblock content %}
